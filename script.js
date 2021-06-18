@@ -16,12 +16,20 @@ cells.forEach(x => {
         turn--;
       }
       x.textContent = array[cells.indexOf(x)];
-      checkWinOrDraw();
+      getResult();
     }
   });
 });
-function checkWinOrDraw() {
+function getResult() {
   const symbols = ['✕', '◯'];
+  const finishGame = (player) => {
+    if (player) {
+      display.textContent = player + ' wins!';
+    } else {
+      display.textContent = 'Draw!';
+    }
+    gg++;
+  };
   for (const symbol of symbols) {
     if ([array[0], array[3], array[6]].every(x => x === symbol)
       || [array[1], array[4], array[7]].every(x => x === symbol)
@@ -31,13 +39,11 @@ function checkWinOrDraw() {
       || [array[6], array[7], array[8]].every(x => x === symbol)
       || [array[0], array[4], array[8]].every(x => x === symbol)
       || [array[2], array[4], array[6]].every(x => x === symbol)) {
-      display.textContent = symbol + ' wins!';
-      gg++;
+      finishGame(symbol);
     }
   }
   if (!array.includes(undefined) && !gg) {
-    display.textContent = 'Draw!';
-    gg++;
+    finishGame();
   }
   if (gg === 1) {
     block.style.display = 'block';
@@ -51,16 +57,5 @@ restart.addEventListener('click', () => {
   display.textContent = '';
   block.style.display = 'none';
   gg = 0;
+  turn = 0;
 });
-
-
-
-// const gameBoard = (() => {
-
-//   return {
-
-//   };
-// })();
-// const Player = (symbol) => {
-//   array.push(symbol)
-// };
