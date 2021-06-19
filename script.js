@@ -21,14 +21,12 @@ cells.forEach(x => {
   });
 });
 function getResult(symbol) {
-  if ([array[0], array[3], array[6]].every(x => x === symbol)
-    || [array[1], array[4], array[7]].every(x => x === symbol)
-    || [array[2], array[5], array[8]].every(x => x === symbol)
-    || [array[0], array[1], array[2]].every(x => x === symbol)
-    || [array[3], array[4], array[5]].every(x => x === symbol)
-    || [array[6], array[7], array[8]].every(x => x === symbol)
-    || [array[0], array[4], array[8]].every(x => x === symbol)
-    || [array[2], array[4], array[6]].every(x => x === symbol)) {
+  const winConditions = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
+    [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6],
+  ];
+  if (winConditions.map(x => [array[x[0]], array[x[1]], array[x[2]]])
+    .some(i => i.every(j => j === symbol))) {
     display.textContent = symbol + ' wins!';
   } else if (!array.includes(undefined)) {
     display.textContent = 'Draw!';
