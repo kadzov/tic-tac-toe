@@ -1,7 +1,7 @@
+const cells = Array.from(document.querySelectorAll('.cell'));
+const block = document.querySelector('#block');
 const display = document.querySelector('#display');
 const restart = document.querySelector('#restart');
-const block = document.querySelector('#block');
-const cells = Array.from(document.querySelectorAll('.cell'));
 let array = new Array(9);
 display.textContent = '✕ turn';
 cells.forEach(x => {
