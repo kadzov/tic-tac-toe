@@ -4,7 +4,7 @@ const display = document.querySelector('#display');
 const restart = document.querySelector('#restart');
 let array = new Array(9);
 display.textContent = '✕ turn';
-cells.forEach(x => {
+cells.forEach((x) => {
   x.addEventListener('click', () => {
     if (!array[cells.indexOf(x)]) {
       if (display.textContent === '✕ turn') {
@@ -22,12 +22,21 @@ cells.forEach(x => {
 });
 const result = (() => {
   const winConditions = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
-    [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6],
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
   ];
   const set = (symbol) => {
-    if (winConditions.map(x => [array[x[0]], array[x[1]], array[x[2]]])
-      .some(i => i.every(j => j === symbol))) {
+    if (
+      winConditions
+        .map((x) => [array[x[0]], array[x[1]], array[x[2]]])
+        .some((i) => i.every((j) => j === symbol))
+    ) {
       display.textContent = symbol + ' wins!';
     } else if (!array.includes(undefined)) {
       display.textContent = 'Draw!';
@@ -39,7 +48,7 @@ const result = (() => {
   return { set };
 })();
 restart.addEventListener('click', () => {
-  cells.forEach(x => {
+  cells.forEach((x) => {
     x.textContent = '';
   });
   array = new Array(9);
